@@ -7,6 +7,7 @@ async function checkStatus() {
   try {
     const res = await fetch("/api/status");
     const data = await res.json();
+    console.log("API result:", data);
 
     if (data.online) {
       div.innerText = `Online — ${data.players}/${data.maxPlayers}`;
