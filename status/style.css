@@ -14,3 +14,20 @@ body {
     display: inline-block;
   }
   
+  #players {
+  margin-top: 20px;
+}
+
+.player-row {
+  background: white;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  font-size: 18px;
+  border: 2px solid #ffd1dc;
+}
+
+.no-players {
+  opacity: 0.6;
+  font-style: italic;
+}

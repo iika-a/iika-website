@@ -1,24 +1,43 @@
 async function checkStatus() {
-    try {
-      const res = await fetch("/api/status");
-      const data = await res.json();
-  
-      const div = document.getElementById("status");
-  
-      if (data.online) {
-        if (data.players == 1) div.innerText = `Online — ${data.players} player online`;
-        else div.innerText = `Online — ${data.players} players online`;
+  const div = document.getElementById("status");
+  const list = document.getElementById("players");
 
-        div.style.background = "#b6ffb3"; // green-ish
+  list.innerHTML = ""; // clear old list
+
+  try {
+    const res = await fetch("/api/status");
+    const data = await res.json();
+
+    if (data.online) {
+      div.innerText = `Online — ${data.players}/${data.maxPlayers}`;
+
+      div.style.background = "#b6ffb3";
+
+      if (data.sample.length > 0) {
+        data.sample.forEach(player => {
+          const row = document.createElement("div");
+          row.className = "player-row";
+          row.innerText = player.name;  // player.name is standard
+          list.appendChild(row);
+        });
       } else {
-        div.innerText = "Offline";
-        div.style.background = "#ffb3b3"; // red-ish
+        const empty = document.createElement("div");
+        empty.className = "no-players";
+        empty.innerText = "No players online";
+        list.appendChild(empty);
       }
-    } catch (e) {
-      document.getElementById("status").innerText = "Error checking server.";
+
+    } else {
+      div.innerText = "Offline";
+      div.style.background = "#ffb3b3";
+      list.innerHTML = "";
     }
+
+  } catch (e) {
+    div.innerText = "Error checking server.";
+    div.style.background = "#ffb3b3";
   }
-  
-  checkStatus();
-  setInterval(checkStatus, 10000); // auto-refresh every 10s
-  
+}
+
+checkStatus();
+setInterval(checkStatus, 10000);
