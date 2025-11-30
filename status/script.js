@@ -6,7 +6,9 @@ async function checkStatus() {
       const div = document.getElementById("status");
   
       if (data.online) {
-        div.innerText = `Online — ${data.players} player(s) online`;
+        if (data.players == 1) div.innerText = `Online — ${data.players} player online`;
+        else div.innerText = `Online — ${data.players} players online`;
+
         div.style.background = "#b6ffb3"; // green-ish
       } else {
         div.innerText = "Offline";
