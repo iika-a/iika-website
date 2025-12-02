@@ -9,7 +9,7 @@ async function checkStatus() {
     const data = await res.json();
 
     if (data.online) {
-      div.innerText = `Online — ${data.players}/${data.maxPlayers}`;
+      div.innerText = `Online | ${data.players}/${data.maxPlayers}`;
 
       div.style.background = "#b6ffb3";
 
@@ -28,7 +28,7 @@ async function checkStatus() {
       }
 
     } else {
-      div.innerText = "Offline";
+      div.innerText = "Offline | Get iika to start the server!";
       div.style.background = "#ffb3b3";
       list.innerHTML = "";
     }
