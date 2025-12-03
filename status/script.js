@@ -28,7 +28,7 @@ async function checkStatus() {
       }
 
     } else {
-      div.innerText = "Offline | Get iika to start the server!";
+      div.innerText = "Offline | Start the server in Discord!";
       div.style.background = "#ffb3b3";
       list.innerHTML = "";
     }
